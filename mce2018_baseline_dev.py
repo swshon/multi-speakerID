@@ -167,4 +167,11 @@ with open(filename, "w") as text_file:
         input_file = dev_trials_label[iter]
         text_file.write('%s,%s,%s\n' % (input_file,score,train2id[id_in_trainset]))
 
+
+
+
+
+# Dev set score using train set :
+# Top S detector EER is 1.54%
+# Top 1 detector EER is 13.99% (Total confusion error is 514)
     
