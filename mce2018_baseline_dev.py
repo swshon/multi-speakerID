@@ -15,13 +15,13 @@ for iter, line in enumerate(bl_match):
     train2id[line_s[2].split('_')[-1]]= line_s[0].split('_')[-1]
     
 def load_ivector(filename):
-    spk_id = np.loadtxt(filename,dtype='string',delimiter=',',skiprows=1,usecols=[0])
+    utt = np.loadtxt(filename,dtype='string',delimiter=',',skiprows=1,usecols=[0])
     ivector = np.loadtxt(filename,dtype='float32',delimiter=',',skiprows=1,usecols=range(1,601))
+    spk_id = []
+    for iter in range(len(utt)):
+        spk_id = np.append(spk_id,utt[iter].split('_')[0])
 
-    for iter in range(len(spk_id)):
-        spk_id[iter] = spk_id[iter].split('_')[0]
-
-    return spk_id, ivector
+    return spk_id, utt, ivector
 
 def length_norm(mat):
 # length normalization (l2 norm)
@@ -123,10 +123,10 @@ def calculate_EER_with_confusion(scores,trials):
     return EER
 
 # Loading i-vector
-trn_bl_id, trn_bl_ivector = load_ivector('data/trn_blacklist.csv')
-trn_bg_id, trn_bg_ivector = load_ivector('data/trn_background.csv')
-dev_bl_id, dev_bl_ivector = load_ivector('data/dev_blacklist.csv')
-dev_bg_id, dev_bg_ivector = load_ivector('data/dev_background.csv')
+trn_bl_id, trn_bl_utt, trn_bl_ivector = load_ivector('data/trn_blacklist.csv')
+trn_bg_id, trn_bg_utt, trn_bg_ivector = load_ivector('data/trn_background.csv')
+dev_bl_id, dev_bl_utt, dev_bl_ivector = load_ivector('data/dev_blacklist.csv')
+dev_bg_id, dev_bg_utt, dev_bg_ivector = load_ivector('data/dev_background.csv')
 
 # Calculating speaker mean vector
 spk_mean, spk_mean_label = make_spkvec(trn_bl_ivector,trn_bl_id)
@@ -153,6 +153,7 @@ dev_EER = calculate_EER(dev_trials, dev_scores)
 #divide trial label into target and non-target, plus confusion error(blacklist, fail at blacklist detector)
 dev_identified_label = spk_mean_label[np.argmax(scores,axis=0)]
 dev_trials_label = np.append( dev_bl_id,dev_bg_id)
+dev_trials_utt_label = np.append( dev_bl_utt,dev_bg_utt)
 
 # Top-1 detector EER
 dev_trials_confusion = get_trials_label_with_confusion(dev_identified_label, dev_trials_label, dev2train )
@@ -164,14 +165,7 @@ filename = 'teamname_fixed_primary.csv'
 with open(filename, "w") as text_file:
     for iter,score in enumerate(dev_scores):
         id_in_trainset = dev_identified_label[iter].split('_')[0]
-        input_file = dev_trials_label[iter]
+        input_file = dev_trials_utt_label[iter]
         text_file.write('%s,%s,%s\n' % (input_file,score,train2id[id_in_trainset]))
 
-
-
-
-
-# Dev set score using train set :
-# Top S detector EER is 1.54%
-# Top 1 detector EER is 13.99% (Total confusion error is 514)
     
