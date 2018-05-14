@@ -18,8 +18,8 @@ you will see the performance on top-S and top-1 detector as below :
 
 And the code also generate example submission file with name "teamname_fixed_primary.csv" and the format are [test utterance ID],[score],[Closest blacklist speaker ID] per each files. For example
 
-    aacn_382801,1.2345,01234567
-    zzow_918095,0.6789,76543210
+    pnah_431154,0.36613864,33762391
+    qtxw_470243,0.39585015,60587769
     ....
 
 # Question
