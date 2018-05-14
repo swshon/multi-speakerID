@@ -1,6 +1,5 @@
 # multi-speakerID baseline
-This is python implementation of multi-target speaker recognition based on i-vector feature. This is also baseline system of the first Multi-target speaker detection and identification Challenge Evaluation (MCE 2018).
-http://www.mce2018.org
+This is python implementation of multi-target speaker recognition based on i-vector feature. This is also baseline system of the first Multi-target speaker detection and identification Challenge Evaluation (MCE 2018, http://www.mce2018.org )
 
 
 # Dataset
