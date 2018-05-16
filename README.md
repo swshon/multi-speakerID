@@ -5,6 +5,9 @@ This is python implementation of multi-target speaker recognition based on i-vec
 # Dataset
 You can download i-vector dataset if you register and confirmed by MCE 2018 organizer. After download, extract to data folder
 
+# System flow
+<img align="center" width="600" src="https://github.com/swshon/multi-speakerID/blob/master/img/multitarget_baseline_v2.png ">
+
 # Performance
 If you run the code like
 
