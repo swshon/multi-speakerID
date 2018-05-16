@@ -145,6 +145,13 @@ dev_trials = np.append( np.ones([len(dev_bl_id), 1]), np.zeros([len(dev_bg_id), 
 
 # Cosine distance scoring
 scores = spk_mean.dot(dev_ivector.transpose())
+
+# Multi-target normalization
+blscores = spk_mean.dot(trn_bl_ivector.transpose())
+mnorm_mu = np.mean(blscores,axis=1)
+mnorm_std = np.std(blscores,axis=1)
+for iter in range(np.shape(scores)[1]):
+    scores[:,iter]= (scores[:,iter] - mnorm_mu) / mnorm_std
 dev_scores = np.max(scores,axis=0)
 
 # Top-S detector EER
@@ -168,4 +175,5 @@ with open(filename, "w") as text_file:
         input_file = dev_trials_utt_label[iter]
         text_file.write('%s,%s,%s\n' % (input_file,score,train2id[id_in_trainset]))
 
-    
+        
+        
