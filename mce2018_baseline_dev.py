@@ -63,7 +63,10 @@ def calculate_EER(trials, scores):
     EER_threshold = threshold[np.argmin(abs(fnr-fpr))]
     
     # print EER_threshold
-    EER = fpr[np.argmin(np.absolute((fnr-fpr)))]
+    EER_fpr = fpr[np.argmin(np.absolute((fnr-fpr)))]
+    EER_fnr = fnr[np.argmin(np.absolute((fnr-fpr)))]
+    EER = 0.5 * (EER_fpr+EER_fnr)
+    
     print "Top S detector EER is %0.2f%%"% (EER*100)
     return EER
 
@@ -117,7 +120,9 @@ def calculate_EER_with_confusion(scores,trials):
 
     # EER with confusion Error
     EER_threshold = threshold[np.argmin(abs(fnr-fpr))]
-    EER = fpr[np.argmin(np.absolute((fnr-fpr)))]
+    EER_fpr = fpr[np.argmin(np.absolute((fnr-fpr)))]
+    EER_fnr = fnr[np.argmin(np.absolute((fnr-fpr)))]
+    EER = 0.5 * (EER_fpr+EER_fnr)
     
     print "Top 1 detector EER is %0.2f%% (Total confusion error is %d)"% ((EER*100), len(np.nonzero(trials==-1)[0]))
     return EER

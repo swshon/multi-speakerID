@@ -16,8 +16,8 @@ If you run the code like
 you will see the performance on top-S and top-1 detector as below :
 
     Dev set score using train set :
-    Top S detector EER is 2.00%
-    Top 1 detector EER is 13.41% (Total confusion error is 492)
+    Top S detector EER is 2.01%
+    Top 1 detector EER is 13.40% (Total confusion error is 492)
 
 And the code also generate example submission file with name "teamname_fixed_primary.csv" and the format are [test utterance ID],[score],[Closest blacklist speaker ID] per each files. For example
 
