@@ -70,7 +70,7 @@ def calculate_EER(trials, scores):
     print "Top S detector EER is %0.2f%%"% (EER*100)
     return EER
 
-def get_trials_label_with_confusion(identified_label, groundtruth_label,dict4spk ):
+def get_trials_label_with_confusion(identified_label, groundtruth_label,dict4spk,is_trial ):
 # determine if the test utterance would make confusion error
 # input: identified_label = string vector, identified result of test utterance among multi-target from the detection system 
 #        groundtruth_label = string vector, ground truth speaker labels of test utterances
@@ -80,16 +80,15 @@ def get_trials_label_with_confusion(identified_label, groundtruth_label,dict4spk
     for iter in range(0,len(groundtruth_label)):
         enroll = identified_label[iter].split('_')[0]
         test = groundtruth_label[iter].split('_')[0]
-        try: 
-            dict4spk[test]
+        if is_trial[iter]:
             if enroll == dict4spk[test]:
                 trials[iter]=1 # for Target trial (blacklist speaker)
             else:
                 trials[iter]=-1 # for Target trial (backlist speaker), but fail on blacklist classifier
-        except KeyError:
+                
+        else :
             trials[iter]=0 # for non-target (non-blacklist speaker)
     return trials
-
 
 def calculate_EER_with_confusion(scores,trials):
 # calculating EER of Top-1 detector
@@ -168,7 +167,7 @@ dev_trials_label = np.append( dev_bl_id,dev_bg_id)
 dev_trials_utt_label = np.append( dev_bl_utt,dev_bg_utt)
 
 # Top-1 detector EER
-dev_trials_confusion = get_trials_label_with_confusion(dev_identified_label, dev_trials_label, dev2train )
+dev_trials_confusion = get_trials_label_with_confusion(dev_identified_label, dev_trials_label, dev2train, dev_trials )
 dev_EER_confusion = calculate_EER_with_confusion(dev_scores,dev_trials_confusion)
 
 # Generating submission file on Dev set for example
