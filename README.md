@@ -40,8 +40,8 @@ And the code also generate example submission file with name "teamname_fixed_pri
 # Reference
 If you want to detailed information, please read below
 
-Suwon Shon, Najim Dehak, Douglas Reynolds, James Glass,
-"MCE 2018: The 1st Multi-target speaker detection and identification Challenge Evaluation (MCE) Plan, Dataset and Baseline System”
+Suwon Shon, Najim Dehak, Douglas Reynolds, James Glass,<br>
+"MCE 2018: The 1st Multi-target speaker detection and identification Challenge Evaluation (MCE) Plan, Dataset and Baseline System”<br>
 https://arxiv.org/abs/1807.06663
 
 
