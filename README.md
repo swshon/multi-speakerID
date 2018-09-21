@@ -3,7 +3,11 @@ This is python implementation of multi-target speaker recognition based on i-vec
 
 
 # Dataset
-You can download i-vector dataset if you register and confirmed by MCE 2018 organizer. After download, extract to data folder
+You can download i-vector dataset here
+
+    https://www.kaggle.com/kagglesre/blacklist-speakers-dataset
+
+After download, extract into data folder
 
 # System flow
 <img align="center" width="600" src="https://github.com/swshon/multi-speakerID/blob/master/img/multitarget_baseline_v2.png ">
@@ -17,7 +21,15 @@ you will see the performance on top-S and top-1 detector as below :
 
     Dev set score using train set :
     Top S detector EER is 2.01%
-    Top 1 detector EER is 12.26% (Total confusion error is 492)
+    Top 1 detector EER is 12.26% (Total confusion error is 444)
+
+    Test set score using train set:
+    Top S detector EER is 7.52%
+    Top 1 detector EER is 16.61% (Total confusion error is 579)
+
+    Test set score using train + dev set:
+    Top S detector EER is 6.24%
+    Top 1 detector EER is 11.24% (Total confusion error is 369)
 
 And the code also generate example submission file with name "teamname_fixed_primary.csv" and the format are [test utterance ID],[score],[Closest blacklist speaker ID] per each files. For example
 
