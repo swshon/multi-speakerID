@@ -37,6 +37,14 @@ And the code also generate example submission file with name "teamname_fixed_pri
     qtxw_470243,0.39585015,60587769
     ....
 
+# Reference
+If you want to detailed information, please read MCE 2018 Plan document
+Suwon Shon, Najim Dehak, Douglas Reynolds, James Glass,
+"MCE 2018: The 1st Multi-target speaker detection and identification Challenge Evaluation (MCE) Plan, Dataset and Baseline System”
+https://arxiv.org/abs/1807.06663
+
+
+
 # Question
 Please email to mce organizer if you have question.
 mce@lists.csail.mit.edu or swshon@mit.edu
