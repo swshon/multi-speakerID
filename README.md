@@ -15,7 +15,7 @@ After download, extract into data folder
 # Performance
 If you run the code like
 
-    python mce2018_baseline_dev.py
+    python mce2018_baseline_test.py
     
 you will see the performance on top-S and top-1 detector as below :
 
